@@ -1,0 +1,140 @@
+.click-zoom input[type="checkbox"] {
+  display: none;
+}
+
+.click-zoom img {
+  transition: transform 0.25s ease;
+  cursor: zoom-in;
+  margin-top: 30%;
+}
+
+.click-zoom input[type="checkbox"]:checked ~ img {
+  transform: scale(4);
+  cursor: zoom-out;
+}
+
+.btn {
+  font-size: 15px;
+  line-height: 1.7;
+  text-transform: capitalize;
+  font-weight: 400;
+  padding: 15px 50px;
+  border-radius: 0;
+  outline: 0 !important;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 1px;
+  background-color: #18181c;
+  -webkit-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+}
+.btn:focus {
+  outline: 0 !important;
+  -webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+}
+
+.btn-sm {
+  padding: 10px 20px;
+}
+
+.btn-lg {
+  padding: 18px 50px;
+}
+
+.btn_center {
+  margin: 0 auto;
+  display: block;
+}
+
+.btn.btn-shadow {
+  -webkit-box-shadow: 3px 4px 5px 0 rgba(0, 0, 0, 0.09);
+  box-shadow: 3px 4px 5px 0 rgba(0, 0, 0, 0.09);
+}
+.btn.btn-shadow:hover {
+  -webkit-box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.09);
+  box-shadow: 1px 1px 1px 0 rgba(0, 0, 0, 0.09);
+}
+
+.btn-rounded {
+  border-radius: 50px;
+}
+
+.btn-primary {
+  background-color: #99896e;
+  border: solid 1px #99896e;
+  color: #ffffff;
+  -webkit-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+}
+.btn-primary:hover {
+  background-color: #18181c;
+  color: #ffffff;
+  border: solid 1px #18181c;
+  -webkit-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+}
+
+.btn-primary-outline {
+  background-color: transparent;
+  border: solid 1px #99896e;
+  color: #99896e;
+  -webkit-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+}
+.btn-primary-outline:hover {
+  background-color: #99896e;
+  color: #ffffff;
+  -webkit-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+}
+
+.btn-light {
+  background-color: #ffffff;
+  border: solid 1px #ffffff;
+  color: #18181c;
+  -webkit-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+}
+.btn-light:hover {
+  color: #ffffff;
+  border: solid 1px #18181c;
+  background-color: #18181c;
+  -webkit-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+}
+
+.btn-dark {
+  background-color: #333333;
+  border: solid 1px #18181c;
+  color: #ffffff;
+  -webkit-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+}
+.btn-dark:hover {
+  color: #18181c;
+  border: solid 1px #ffffff;
+  background-color: #ffffff;
+  -webkit-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+}
+
+.set-bg {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top center;
+}
+
+div.datedropper.my-style {
+  --dd-color1: #31bcd2;
+  --dd-color2: #18181c;
+  --dd-color3: #d0d4d8;
+  --dd-color4: #18181c;
+
+  --dd-radius: 0px;
+  --dd-width: 140px;
+  --dd-shadow: 0 0 0px 0px rgba(0, 0, 0, 0);
+}
+.date-input2 {
+  opacity: 1;
+}
