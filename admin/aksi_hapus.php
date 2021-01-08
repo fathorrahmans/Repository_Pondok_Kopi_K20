@@ -24,6 +24,11 @@ if ($p == "galeri") {
     mysqli_query($con, "delete from tb_galeri where id_galeri='$id'");
     echo "<script>location='.?page=galeri'</script>";
 }
+if ($p == "berita") {
+    $id = $_GET['id'];
+    mysqli_query($con, "delete from tb_berita where id_berita='$id'");
+    echo "<script>location='.?page=berita'</script>";
+}
 
 if ($p == "variasi") {
     $id = $_GET['id'];

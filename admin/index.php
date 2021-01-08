@@ -47,7 +47,7 @@ if (!empty($_SESSION['level'])) {
         <!-- pencarian/search -->
         <div class="search-panel">
           <div class="search-inner d-flex align-items-center justify-content-center">
-            <div class="close-btn">Close <i class="fa fa-close"></i></div>
+            <div class="close-btn">Close X</div>
             <form id="searchForm" action="#">
               <div class="form-group">
                 <input type="search" name="search" placeholder="What are you searching for...">
@@ -67,7 +67,7 @@ if (!empty($_SESSION['level'])) {
               <div class="brand-text brand-sm"><strong class="text-primary">57</strong><strong>58</strong></div>
             </a>
             <!-- Sidebar Toggle Btn-->
-            <button class="sidebar-toggle"><i class="fa fa-long-arrow-left"></i></button>
+            <button class="sidebar-toggle"><i class="fad fa-long-arrow-left"></i></button>
           </div>
           <!-- akhir judul admin -->
 
@@ -116,19 +116,20 @@ if (!empty($_SESSION['level'])) {
           <li id="list1"><a href="."><i class="fad fa-home"></i>Beranda </a></li>
           <?php if ($_SESSION['level'] == "admin") { ?>
             <li id="list2"><a href=".?page=petugas"><i class="fad fa-user"></i>Petugas </a></li>
-            <li id="list3"><a href=".?page=pelanggan"><i class="fas fa-user"></i>Pelanggan </a></li>
+            <li id="list3"><a href=".?page=pelanggan"><i class="fad fa-user"></i>Pelanggan </a></li>
             <li id="list4"><a href=".?page=pesanan"><i class="fad fa-bags-shopping"></i>Pesanan </a></li>
             <li id="list5"><a href=".?page=produk"><i class="fad fa-box-alt"></i>Produk </a></li>
             <li id="list6"><a href=".?page=kota"><i class="fad fa-car-building"></i>Daftar Kota </a></li>
             <li id="list7"><a href=".?page=galeri"><i class="fad fa-images"></i>Galeri </a></li>
-            <li id="list8"><a href=".?page=laporan"><i class="fad fa-clipboard"></i>Laporan Pesanan </a></li>
+            <li id="list8"><a href=".?page=berita"><i class="fad fa-newspaper"></i>Berita </a></li>
+            <li id="list9"><a href=".?page=laporan"><i class="fad fa-clipboard"></i>Laporan Pesanan </a></li>
           <?php } else if ($_SESSION['level'] == "karyawan") { ?>
-            <li id="list3"><a href=".?page=pelanggan"><i class="fas fa-user"></i>Pelanggan </a></li>
+            <li id="list3"><a href=".?page=pelanggan"><i class="fad fa-user"></i>Pelanggan </a></li>
             <li id="list4"><a href=".?page=pesanan"><i class="fad fa-bags-shopping"></i>Pesanan </a></li>
             <li id="list5"><a href=".?page=produk"><i class="fad fa-box-alt"></i>Produk </a></li>
             <li id="list6"><a href=".?page=kota"><i class="fad fa-car-building"></i>Daftar Kota </a></li>
           <?php } else if ($_SESSION['level'] == "pemilik") { ?>
-            <li id="list8"><a href=".?page=laporan"><i class="fad fa-clipboard"></i>Laporan Pesanan </a></li>
+            <li id="list9"><a href=".?page=laporan"><i class="fad fa-clipboard"></i>Laporan Pesanan </a></li>
           <?php } ?>
         </ul>
       </nav>
@@ -182,8 +183,10 @@ if (!empty($_SESSION['level'])) {
           $('#list6').addClass("active");
         <?php } else if ($page == "galeri") { ?>
           $('#list7').addClass("active");
-        <?php } else if ($page == "laporan") { ?>
+        <?php } else if ($page == "berita") { ?>
           $('#list8').addClass("active");
+        <?php } else if ($page == "laporan") { ?>
+          $('#list9').addClass("active");
         <?php } else if ($page == "produk_variasi") { ?>
           $('#list5').addClass("active");
         <?php } else if ($page == "produk_variasi_tambah") { ?>

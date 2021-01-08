@@ -41,7 +41,7 @@ if (isset($_POST['tambah_petugas'])) {
     $leve = $_POST['xlevel'];
     $alam = $_POST['xalamat'];
 
-    mysqli_query($con, "insert into tb_petugas(nama,username,password,no_telp,alamat,level) values ('$nama','$user','$pass','$telp','$alam','$leve')");
+    mysqli_query($con, "insert into tb_petugas(nama_petugas,username,password,no_telp,alamat,level) values ('$nama','$user','$pass','$telp','$alam','$leve')");
     echo "<script>location='.?page=petugas'</script>";
 }
 
@@ -54,7 +54,7 @@ if (isset($_POST['update_petugas'])) {
     $level = $_POST['xlevel'];
     $alam = $_POST['xalamat'];
 
-    mysqli_query($con, "update tb_petugas set nama='$nama', username='$user', no_telp='$telp',password='$pass',level='$level',alamat='$alam' where id_petugas='$id'");
+    mysqli_query($con, "update tb_petugas set nama_petugas='$nama', username='$user', no_telp='$telp',password='$pass',level='$level',alamat='$alam' where id_petugas='$id'");
     echo "<script>location='.?page=petugas'</script>";
 }
 
@@ -117,6 +117,41 @@ if (isset($_POST['update_galeri'])) {
     echo "<script>location='.?page=galeri'</script>";
 }
 
+if (isset($_POST['tambah_berita'])) {
+    $judul = $_POST['bjudul'];
+    $tanggal = $_POST['date-input'];
+    $info = $_POST['bsingkat'];
+    $desk = $_POST['bdesk'];
+    $gambar = $_FILES['bgambar']['name'];
+    $tmp_gambar = $_FILES['bgambar']['tmp_name'];
+    $namagambar = str_replace(" ", "", date("YmdHis") . $gambar);
+    mysqli_query($con, "insert into tb_berita(judul_berita,tgl_berita,gambar_berita,isi_singkat,isi)values('$judul','$tanggal','$namagambar','$info','$desk')");
+    copy($tmp_gambar, "images/berita/$namagambar");
+    echo "<script>location='.?page=berita'</script>";
+}
+
+if (isset($_POST['update_berita'])) {
+    $id = $_GET['id'];
+    $judul = $_POST['bjudul'];
+    $tanggal = $_POST['date-input2'];
+    $info = $_POST['bsingkat'];
+    $desk = $_POST['bdesk'];
+    $gambar = $_FILES['bgambar']['name'];
+    $tmp_gambar = $_FILES['bgambar']['tmp_name'];
+    $namagambar = str_replace(" ", "", date("YmdHis") . $gambar);
+
+    if (empty($gambar)) {
+        mysqli_query($con, "update tb_berita set judul_berita='$judul',tgl_berita='$tanggal',isi_singkat='$info',isi='$desk' where id_berita='$id'");
+        echo "<script>location='.?page=berita'</script>";
+    } else {
+        mysqli_query($con, "update tb_berita set judul_berita='$judul',tgl_berita='$tanggal',gambar_berita='$namagambar',isi_singkat='$info',isi='$desk' where id_berita='$id'");
+        copy($tmp_gambar, "images/berita/$namagambar");
+        echo "<script>location='.?page=berita'</script>";
+    }
+
+    echo "<script>location='.?page=berita'</script>";
+}
+
 if (isset($_POST['tambah_variasi'])) {
     $id = $_GET['id'];
     $id_produk = $_POST['vid'];
@@ -127,11 +162,12 @@ if (isset($_POST['tambah_variasi'])) {
     // $gambar = $_FILES['vgambar']['name'];
     // $tmp_gambar = $_FILES['vgambar']['tmp_name'];
     // $namagambar = str_replace(" ", "", date("YmdHis") . $gambar);
+    // $gambar = "-";
 
-    $query = "INSERT INTO tb_produk_variasi VALUES";
+    $query = "INSERT INTO tb_produk_variasi(nama_variasi,harga_variasi,stok,berat,id_produk) VALUES";
     $index = 0;
     foreach ($nama as $datanama) {
-        $query .= "('" . NULL . "','" . $datanama . "','" . $harga[$index] . "','" . $stok[$index] . "','" . $berat[$index] . "','" . $namagambar[$index] . "','" . $id_produk[$index] . "'),";
+        $query .= "('" . $datanama . "','" . $harga[$index] . "','" . $stok[$index] . "','" . $berat[$index] . "','" . $id_produk[$index] . "'),";
         $index++;
     }
     $query = substr($query, 0, strlen($query) - 1) . ";";
@@ -159,7 +195,10 @@ if ($p = "update") {
     $id = $_GET['id'];
     $sta = $_GET['status'];
     $ket = $_POST['xalasan'];
-    if ($sta == "kirim") {
+
+    if ($sta == "verifikasi") {
+        mysqli_query($con, "update tb_pesan set status='sudah bayar',keterangan='-' where id_pesan='$id'");
+    } else if ($sta == "kirim") {
         mysqli_query($con, "update tb_pesan set status='sedang dikirim',keterangan='-' where id_pesan='$id'");
     } else if ($sta == "tolak") {
         mysqli_query($con, "update tb_pesan set status='dibatalkan',keterangan='$ket' where id_pesan='$id'");
