@@ -118,13 +118,6 @@ address {
   line-height: inherit;
 }
 
-ol,
-ul,
-dl {
-  margin-top: 0;
-  margin-bottom: 1rem;
-}
-
 ol ol,
 ul ul,
 ol ul,
@@ -1748,7 +1741,7 @@ pre code {
 .table {
   width: 100%;
   margin-bottom: 1rem;
-  color: #212529;
+  color: #000;
 }
 .table th,
 .table td {
@@ -2967,13 +2960,13 @@ fieldset:disabled a.btn {
 
 .btn-dark {
   color: #fff;
-  background-color: #343a40;
-  border-color: #343a40;
+  background-color: #000000;
+  border-color: #000000;
 }
 .btn-dark:hover {
-  color: #fff;
-  background-color: #23272b;
-  border-color: #1d2124;
+  color: #000;
+  background-color: #ffffff;
+  border-color: #000000;
 }
 .btn-dark:focus,
 .btn-dark.focus {
@@ -3232,13 +3225,13 @@ fieldset:disabled a.btn {
 }
 
 .btn-outline-dark {
-  color: #343a40;
-  border-color: #343a40;
+  color: #000000;
+  border-color: #000000;
 }
 .btn-outline-dark:hover {
   color: #fff;
-  background-color: #343a40;
-  border-color: #343a40;
+  background-color: #000000;
+  border-color: #000000;
 }
 .btn-outline-dark:focus,
 .btn-outline-dark.focus {
@@ -6240,8 +6233,8 @@ a.close.disabled {
   flex-direction: column;
   width: 100%;
   pointer-events: auto;
-  background-color: #3b3636;
-  color: #9da1a5;
+  background-color: #fffff5;
+  color: #000;
   background-clip: padding-box;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 0.3rem;
@@ -10642,7 +10635,7 @@ a.text-dark:focus {
 }
 
 html {
-  background: #1a1818;
+  background: #fff;
 }
 
 body {
@@ -10650,10 +10643,10 @@ body {
   font-size: 14px;
   line-height: 1.8;
   font-weight: 400;
-  color: #9da1a5;
+  color: #000000;
   background-size: cover;
   background-repeat: no-repeat;
-  background: #1a1818;
+  background: #fff;
 }
 body.menu-show {
   overflow: hidden;
@@ -10666,7 +10659,7 @@ a {
   -webkit-transition: 0.3s all ease;
   -o-transition: 0.3s all ease;
   transition: 0.3s all ease;
-  color: #aca8a8;
+  color: #4e1c1b;
 }
 a:hover {
   text-decoration: none;
@@ -10674,7 +10667,6 @@ a:hover {
 }
 
 h1,
-h2,
 h3,
 h4,
 h5,
@@ -10684,7 +10676,7 @@ h5,
 .h4,
 .h5 {
   line-height: 1.5;
-  color: #fff;
+  color: rgb(0, 0, 0);
   font-weight: normal;
 }
 
@@ -11074,7 +11066,7 @@ strong {
   padding: 15px 20px;
   font-weight: 700;
   text-transform: uppercase;
-  color: #9da1a5;
+  color: black;
   font-size: 10px;
   letter-spacing: 1px;
 }
@@ -11135,7 +11127,6 @@ strong {
   border-radius: 0px;
   -webkit-box-shadow: none !important;
   box-shadow: none !important;
-  border-radius: 2px;
 }
 .btn:hover,
 .btn:active,
@@ -11216,18 +11207,18 @@ strong {
 }
 .ftco-about .counter-wrap .text p span {
   font-weight: 700;
-  color: #fff;
+  color: #000;
 }
 .ftco-about .counter-wrap .text p span.number {
   font-weight: 700;
-  color: #fff;
+  color: #000;
 }
 
 .blockquote p {
   font-size: 18px;
   font-weight: 400;
   font-family: "Noto Serif", serif;
-  color: #fff;
+  color: rgb(0, 0, 0);
   font-style: italic;
 }
 
@@ -11637,12 +11628,12 @@ strong {
 .form-control {
   height: 52px !important;
   background: transparent !important;
-  color: #9da1a5 !important;
+  color: #000 !important;
   font-size: 13px !important;
   border-radius: 0px;
   -webkit-box-shadow: none !important;
   box-shadow: none !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  /* border: 1px solid rgba(255, 255, 255, 0.1) !important; */
 }
 .form-control::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
@@ -11752,7 +11743,8 @@ textarea.form-control {
 .ftco-footer {
   font-size: 16px;
   padding: 7em 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  background: #ffffe5;
 }
 .ftco-footer .ftco-footer-widget h2 {
   margin-bottom: 40px;
@@ -11779,13 +11771,13 @@ textarea.form-control {
   border: 2px solid #fff !important;
 }
 .ftco-footer p {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgb(0, 0, 0);
 }
 .ftco-footer a {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgb(0, 0, 0);
 }
 .ftco-footer a:hover {
-  color: #fff;
+  color: #4e1c1b;
 }
 .ftco-footer .ftco-heading-2 {
   font-size: 17px;
@@ -11806,6 +11798,7 @@ textarea.form-control {
   background: rgba(255, 255, 255, 0.05);
   border-radius: 50%;
   position: relative;
+  border: 1px solid #000;
 }
 .ftco-footer-social li a span {
   position: absolute;
@@ -11818,6 +11811,7 @@ textarea.form-control {
 }
 .ftco-footer-social li a:hover {
   color: #fff;
+  background-color: #4e1c1b;
 }
 
 .footer-small-nav > li {
@@ -11930,7 +11924,7 @@ textarea.form-control {
 
 .heading-section h2 {
   font-size: 16px;
-  color: white;
+  color: black;
   line-height: 1.4;
   font-weight: 700;
   text-transform: uppercase;
@@ -12304,7 +12298,6 @@ textarea.form-control {
 .grid figure h2 {
   word-spacing: -0.15em;
   font-weight: 300;
-  /* background: rgba(0, 0, 0, 0.300); */
 }
 
 .grid figure h2 span {
@@ -12344,6 +12337,7 @@ figure.effect-milo h2 {
   right: 0;
   bottom: 0;
   padding: 1em 1.2em;
+  text-shadow: 2px 2px 10px #757527be;
 }
 
 figure.effect-milo p {
@@ -12452,7 +12446,7 @@ figure.effect-milo:hover p {
   width: 100%;
 }
 .contact-section .box {
-  background: #272323;
+  background: #ffffe5;
   width: 100%;
 }
 .contact-section .box h3 {
