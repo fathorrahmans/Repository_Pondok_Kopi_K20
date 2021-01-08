@@ -10,7 +10,7 @@
             <div class="col-sm-12">
                 <div class="block margin-bottom-sm">
                     <div class="title">
-                        <button data-toggle="modal" data-target="#myTambah" class="btn btn-outline-warning"><i class="fad fa-user-plus"></i> Tambah Petugas</button>
+                        <button data-toggle="modal" data-target="#myTambah" class="btn btn-outline-primary"><i class=" fad fa-user-plus"></i> Tambah Petugas</button>
                         <div id="myTambah" class="modal fade">
                             <div class="modal-dialog">
                                 <!-- Modal content -->
@@ -80,12 +80,13 @@
                                 ?>
                                     <tr>
                                         <td><?= $nomor++ ?></td>
-                                        <td><?= $d['nama'] ?></td>
+                                        <td><?= $d['nama_petugas'] ?></td>
                                         <td><?= $d['username'] ?></td>
                                         <td><?= $d['no_telp'] ?></td>
                                         <td><?= $d['level'] ?></td>
                                         <td class="text-center"> <button data-toggle="modal" data-target="#myEdit<?php echo $d['id_petugas'] ?>" class="btn btn-outline-info btn-sm">Edit</button> &nbsp; - &nbsp;
-                                            <button data-toggle="modal" data-target="#myHapus<?php echo $d['id_petugas'] ?>" class="btn btn-outline-primary btn-sm">Hapus</button></td>
+                                            <button data-toggle="modal" data-target="#myHapus<?php echo $d['id_petugas'] ?>" class="btn btn-outline-primary btn-sm">Hapus</button>
+                                        </td>
                                     </tr>
                                     <!-- modal untuk hapus -->
                                     <div class="modal fade" id="myHapus<?php echo $d['id_petugas'] ?>">
@@ -125,7 +126,7 @@
                                                         ?>
                                                             <div class="form-group">
                                                                 <label>Nama</label>
-                                                                <input type="text" name="xnama" class="form-control" value="<?php echo $dat['nama']; ?>">
+                                                                <input type="text" name="xnama" class="form-control" value="<?php echo $dat['nama_petugas']; ?>">
                                                             </div>
                                                             <div class="form-group">
                                                                 <label>Username</label>

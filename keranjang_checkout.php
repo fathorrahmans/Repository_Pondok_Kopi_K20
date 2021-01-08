@@ -1,9 +1,7 @@
 <?php
 session_start();
 include "koneksi/koneksi.php";
-// echo '<pre style="color:black;">';
-// print_r($_SESSION['namaplg']);
-// echo '</pre>';
+
 if (empty($_SESSION['id_pelanggan'])) {
     echo "<script>location='login.php'</script>";
 } else if (empty($_SESSION['keranjang'])) {
@@ -39,7 +37,7 @@ if (empty($_SESSION['id_pelanggan'])) {
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: 50px;
+            margin-bottom: 20px;
             padding-top: 110px;
         }
 
@@ -55,7 +53,6 @@ if (empty($_SESSION['id_pelanggan'])) {
             height: 50px;
             padding: 10px;
             display: flex;
-            margin-bottom: 10px;
         }
 
         .nama {
@@ -75,12 +72,7 @@ if (empty($_SESSION['id_pelanggan'])) {
         }
 
         .total {
-            width: 15%;
-            text-align: center;
-        }
-
-        .aksi {
-            width: 12%;
+            width: 27%;
             text-align: center;
         }
 
@@ -88,9 +80,8 @@ if (empty($_SESSION['id_pelanggan'])) {
             background: #FFFFE5;
             color: black;
             padding: 10px;
-            border-top: 2px solid grey;
+            border-top: 2px solid #9da1a5;
             display: flex;
-            padding-top: 20px;
             padding-bottom: 20px;
         }
 
@@ -103,7 +94,7 @@ if (empty($_SESSION['id_pelanggan'])) {
         .namai img {
             width: 100px;
             height: 100px;
-            border: 1px solid grey;
+            border: 1px solid lightcoral;
         }
 
         .nmproduk h6 {
@@ -131,44 +122,8 @@ if (empty($_SESSION['id_pelanggan'])) {
             align-items: center;
         }
 
-        .qtyi .fad {
-            color: black;
-            transition: all .5s ease;
-            display: flex;
-            justify-content: center;
-            padding-top: 5px;
-        }
-
-        .qtyi .fad:hover {
-            color: darkgray;
-        }
-
-        .inputan {
-            background-color: transparent;
-            color: black;
-            border: 0px;
-            text-align: center;
-            width: 40px;
-            outline: none;
-            transition: all .5s ease;
-            cursor: pointer;
-        }
-
-        .inputan:focus {
-            border: 0px;
-            box-shadow: 0 0 10px #eb716f77;
-            border-radius: 4px;
-        }
-
         .totali {
-            width: 15%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .aksii {
-            width: 12%;
+            width: 27%;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -176,7 +131,6 @@ if (empty($_SESSION['id_pelanggan'])) {
 
         .futer {
             background-color: #FFFFE5;
-            margin-top: 10px;
             padding-top: 15px;
             padding-bottom: 15px;
         }
@@ -198,8 +152,39 @@ if (empty($_SESSION['id_pelanggan'])) {
             font-size: 25px;
         }
 
-        .check button {
-            width: 53%;
+        .alamat {
+            background: #FFFFE5;
+            color: black;
+            padding: 20px;
+        }
+
+        .alamat h5 {
+            color: red;
+        }
+
+        .area {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            color: black;
+            border: 1px solid #9da1a5;
+            padding: 1em .5em .5em;
+            outline: none;
+        }
+
+        form textarea::placeholder {
+            color: darkred;
+        }
+
+        .custom-select {
+            background: #FFFFE5;
+            color: black;
+            cursor: pointer;
+            border: 1px solid #9da1a5;
+            border-radius: 0px;
+        }
+
+        .btn-danger {
+            width: 100%;
         }
     </style>
 </head>
@@ -207,18 +192,17 @@ if (empty($_SESSION['id_pelanggan'])) {
 <body>
     <?php
     include "navbar.php";
-    include "navbar_2.php";
     ?>
+
     <div class="container-fluid judul">
-        <h2>Keranjang Belanja</h2>
+        <h2>checkout</h2>
     </div>
 
-    <div class="container produkheader">
+    <div class="container mt-1 produkheader">
         <div class="nama"><b>Produk</b></div>
         <div class="harga"><b>Harga Satuan</b></div>
         <div class="qty"><b>Kuantitas</b></div>
         <div class="total"><b>Total Harga</b></div>
-        <div class="aksi"><b>Aksi</b></div>
     </div>
     <?php
     foreach ($_SESSION["keranjang"] as $id_variasi => $jumlah) {
@@ -242,68 +226,109 @@ if (empty($_SESSION['id_pelanggan'])) {
                 </div>
             </div>
             <div class="hargai">Rp <?php echo number_format($d["harga_variasi"]); ?></div>
-            <div class="qtyi">
-                <div class="row" style="width:130px; height:35px;">
-                    <div class="col" style="padding:0px; padding-top:5px; border: 1px solid darkgray;"><a href="keranjang_aksi.php?p=kurangi&id=<?php echo $id_variasi ?>"><i class="fad fa-minus"></i></a></div>
-                    <div class="col" style="padding:0px; padding-top:5px; border-top: 1px solid darkgray;border-bottom: 1px solid darkgray;">
-                        <form action="keranjang_aksi.php?p=input" method="post">
-                            <input type="text" name="jumlah" class="inputan" value="<?php echo $jumlah; ?>">
-                            <input type="hidden" name="id" value="<?php echo $id_variasi ?>">
-                        </form>
-                    </div>
-                    <div class="col" style="padding:0px; padding-top:5px; border: 1px solid darkgray;"><a href="keranjang_aksi.php?p=tambah&id=<?php echo $id_variasi ?>"><i class="fad fa-plus"></i></a></div>
-                </div>
-            </div>
+            <div class="qtyi"><?php echo $jumlah; ?></div>
             <div class="totali">Rp <?php echo number_format($subtotal); ?></div>
-            <div class="aksii">
-                <button data-toggle="modal" data-target="#myHapus<?php echo $id_variasi ?>" class="btn btn-outline-light">Hapus</button>
-            </div>
         </div>
-        <!-- modal untuk hapus -->
-        <div class="modal fade" id="myHapus<?php echo $id_variasi ?>">
-            <div class="modal-dialog modal-md">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-                    <div class="modal-body">
-                        Apakah anda yakin?
-                    </div>
-                    <div class="modal-footer">
-                        <a href="keranjang_aksi.php?p=hapus&id=<?php echo $id_variasi ?>" class="btn btn-warning">&nbsp; Iya &nbsp;</a> &nbsp;
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <!-- akhir modal untuk hapus -->
     <?php } ?>
-
     <div class="container futer">
         <div class="row">
-            <div class="col-sm-8 pro">
-                <a href=".#produk"><button class="btn btn-outline-dark">Produk Lainnya</button></a>
-            </div>
-            <div class="col-sm-4 sub">
+            <div class="col-sm-9 pro"></div>
+            <div class="col-sm-3 sub">
                 <div class="sub">
                     <p>Subtotal : <b>Rp <?php echo number_format($total) ?></b></p>
-                </div>
-                <div class="check">
-                    <a href="keranjang_checkout.php"><button class="btn btn-danger"> Checkout </button></a>
                 </div>
             </div>
 
         </div>
     </div>
 
+    <form action="" method="post">
+        <div class="container mt-1 alamat">
+            <div class="row">
+                <h5>&nbsp;<i class="fad fa-map-marker-alt"></i> Alamat Pengiriman</h5>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">
+                    <?php
+                    $sql = mysqli_query($con, "select * from tb_pelanggan where id_pelanggan='$_SESSION[id_pelanggan]'");
+                    $dp = mysqli_fetch_assoc($sql);
+                    ?>
+                    <b><?php echo $dp['nama'] ?><br>
+                        <?php echo $dp['no_telp'] ?></b>
+                </div>
+                <div class="col-sm-7">
+                    <div class="form-group">
+                        <textarea class="area" name="alamat_lengkap" id="alamat_lengkap" placeholder="Tuliskan alamat pengiriman lengkap serta (kode pos)" required></textarea>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <select class="custom-select custom-select-sm mb-3" name="id_ongkir" id="id_ongkir" required>
+                        <option value="">---Pilih Kota---</option>
+                        <?php
+                        $sql = mysqli_query($con, "select * from tb_ongkir");
+                        while ($perongkir = mysqli_fetch_assoc($sql)) {
+                        ?>
+                            <option value="<?php echo $perongkir['id_ongkir'] ?>">
+                                <?php echo $perongkir['nama_kota'] ?> -
+                                Rp <?php echo number_format($perongkir['harga_ongkir']) ?>
+                            </option>
+                        <?php } ?>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="container mt-1 alamat">
+            <div class="row">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-3">
+                    <button class="btn btn-danger" name="checkout">Buat Pesanan</button>
+                </div>
+            </div>
+        </div>
+
+    </form>
+    <?php
+    if (isset($_POST["checkout"])) {
+        $id_pelanggan = $_SESSION['id_pelanggan'];
+        $id_ongkir = $_POST['id_ongkir'];
+        $alamat_lengkap = $_POST['alamat_lengkap'];
+        date_default_timezone_set('Asia/Jakarta');
+        $tanggal_pesanan = date("Y-m-d H:i:s");
+        $sql = mysqli_query($con, "select * from tb_ongkir where id_ongkir='$id_ongkir'");
+        $d = mysqli_fetch_assoc($sql);
+        $tarif = $d['harga_ongkir'];
+        $total_pesanan = $total + $tarif;
 
 
+        //menyimpan ke tb_pesan
+        $sql = mysqli_query($con, "insert into tb_pesan(tanggal_pesan,tanggal_terima,status,total,alamat_lengkap,id_pelanggan,id_ongkir)
+                                            values ('$tanggal_pesanan','','belum bayar','$total_pesanan','$alamat_lengkap','$id_pelanggan','$id_ongkir')");
+
+
+        //mendapatkan id pembelian yang barusan
+        $id_pesanan_barusan = mysqli_insert_id($con);
+
+        //menyimpan ke tb_pesan_detail
+        foreach ($_SESSION["keranjang"] as $id_variasi => $jumlah) {
+            $sql = mysqli_query($con, "select * from tb_produk_variasi where id_variasi='$id_variasi'");
+            $data = mysqli_fetch_assoc($sql);
+            $subtotal = $data['harga_variasi'] * $jumlah;
+            $sqlstok = $data['stok'] - $jumlah;
+            mysqli_query($con, "insert into tb_pesan_detail(jumlah,subtotal,id_variasi,id_pesan)
+                                            values ('$jumlah','$subtotal','$id_variasi','$id_pesanan_barusan')");
+            mysqli_query($con, "update tb_produk_variasi set stok=$sqlstok where id_variasi='$data[id_variasi]' ");
+        }
+
+        unset($_SESSION['keranjang']);
+        echo "<script>location='keranjang_nota.php?id=$id_pesanan_barusan'</script>";
+    }
+    ?>
     <!-- Awal footer -->
     <footer class="ftco-footer py-5 mt-5">
         <div class="container text-center">
             <div class="row">
                 <div class="col-md-12 text-center">
+
                     <p>
                         Copyright &copy;<script>
                             document.write(new Date().getFullYear());
@@ -321,7 +346,6 @@ if (empty($_SESSION['id_pelanggan'])) {
         </div>
     </footer>
     <!-- akhir footer -->
-
     <!-- loader -->
     <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
             <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
