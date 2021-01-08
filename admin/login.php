@@ -68,7 +68,7 @@
                   if ($data['password'] == ($pass)) {
                     $_SESSION['id_petugas'] = $data['id_petugas'];
                     $_SESSION['password'] = $data['password']; //pwd
-                    $_SESSION['namaptg'] = $data['nama'];
+                    $_SESSION['namaptg'] = $data['nama_petugas'];
                     $_SESSION['level'] = $data['level'];
 
                     echo "<script>location='.'</script>";
