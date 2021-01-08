@@ -10,40 +10,29 @@ include "koneksi/koneksi.php";
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700,700i&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Noto+Serif:400,400i,700,700i&display=swap" rel="stylesheet">
-
-  <link href="https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap" rel="stylesheet">
-
   <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
   <link rel="stylesheet" href="css/animate.css">
 
   <link rel="stylesheet" href="css/owl.carousel.min.css">
   <link rel="stylesheet" href="css/owl.theme.default.min.css">
   <link rel="stylesheet" href="css/magnific-popup.css">
+  <link rel="stylesheet" href="css/ionicons.min.css">
+  <link rel="stylesheet" href="css/swiper.min.css">
 
+  <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/aos.css">
 
-  <link rel="stylesheet" href="css/ionicons.min.css">
-
-  <link rel="stylesheet" href="css/bootstrap-datepicker.css">
-  <link rel="stylesheet" href="css/jquery.timepicker.css">
-
   <link rel="stylesheet" href="css/fontawesome5/css/all.min.css">
-  <link rel="stylesheet" href="css/flaticon.css">
-  <link rel="stylesheet" href="css/icomoon.css">
   <link rel="stylesheet" href="css/style.css">
+  <style>
 
+  </style>
 </head>
 
 <body>
+  <?php include "navbar.php" ?>
 
-  <?php
-  include "navbar.php";
-  include "navbar_2.php";
-  ?>
-
-  <section class="ftco-section work-single ftco-no-pt ftco-no-pb pt-5">
+  <section class="ftco1" style="background: white; color: black;">
     <div class="container ">
       <div class="row ">
         <?php
@@ -54,12 +43,12 @@ include "koneksi/koneksi.php";
         <div class="col-md-6  d-flex align-items-stretch">
           <div class="img w-100" style="background-image: url(admin/images/produk/<?= $d['gambar_produk'] ?>); width:500px; height:600px;"></div>
         </div>
-        <div class="col-md-6 py-md-5">
+        <div class="col-md-6 py-md-5" style="background: #FFFFF5;">
           <div class="text pl-md-5 py-5" id="variasi">
-            <h2 style="cursor: pointer;"><?= $d['nama_depan'] ?> <?= $d['nama_belakang'] ?></h2>
+            <h2 style="color: black;"><?= $d['nama_depan'] ?> <?= $d['nama_belakang'] ?></h2>
             <p><?= $d['deskripsi'] ?></p>
 
-            <div style="color: lightgoldenrodyellow; font-weight: 700; letter-spacing: 1px;">Variasi : <br></div>
+            <div style="color: black; font-weight: 700; letter-spacing: 1px;">Variasi : <br></div>
             <?php
             $id = $_GET['id'];
             $no = 1;
@@ -67,16 +56,14 @@ include "koneksi/koneksi.php";
             while ($d = mysqli_fetch_assoc($sql)) {
               $totalstok = $totalstok + $d['stok'];
             ?>
-              <button class="btn btn-outline-light btn-sm" value="<?= $d['id_variasi']; ?>" name="variasi" id="btn<?= $no++ ?>">
-                <?= $d['nama_variasi']; ?> <?= $d['berat']; ?>kg </button>
+              <button class="btn btn-outline-dark btn-sm" value="<?= $d['id_variasi']; ?>" name="variasi" id="btn<?= $no++ ?>">
+                <?= $d['nama_variasi']; ?> <?= $d['berat']; ?>gr </button>
             <?php } ?>
             <div class="mt-4 mb-3">
-              <span> Harga : <b id="h" style="font-size: 20px; color:lightcoral"></b></span> <br>
-              <span> Stok Tersisa <b id="p" style="color:whitesmoke"><?= $totalstok ?></b> buah</span>
+              <span> Harga : <b id="h" style="font-size: 20px; color:darkred"></b></span> <br>
+              <span> Stok Tersisa <b id="p" style="color: darkred"><?= $totalstok ?></b> buah</span>
             </div>
-
-
-            <button class="btn btn-outline-warning" id="btnkrjg">Masukkan Keranjang</button>
+            <button class="btn btn-danger" id="btnkrjg">Masukkan Keranjang</button>
             <div class="mt-3" id="alert" style="width: 50%;"></div>
           </div>
         </div>
@@ -87,29 +74,27 @@ include "koneksi/koneksi.php";
 
 
   <!-- Awal footer -->
-  <section class="ftco-section">
-    <footer class="ftco-footer py-5">
-      <div class="container text-center">
-        <div class="row">
-          <div class="col-md-12 text-center">
+  <footer class="ftco-footer py-5 mt-5">
+    <div class="container text-center">
+      <div class="row">
+        <div class="col-md-12 text-center">
 
-            <p>
-              Copyright &copy;<script>
-                document.write(new Date().getFullYear());
-              </script> Selamat menikmati produk kopi kami | by <a href="index.php" target="_blank"> Pondok Kopi 57.58</a>
-            </p>
+          <p>
+            Copyright &copy;<script>
+              document.write(new Date().getFullYear());
+            </script> Selamat menikmati produk kopi kami | by <a href="index.php" target="_blank" style="color: black;"> Pondok Kopi 57.58</a>
+          </p>
 
-            <ul class="ftco-footer-social p-0">
-              <li class="ftco-animate"><a href="#"><span><i class="fab fa-twitter"></i></span></a></li>
-              <li class="ftco-animate"><a href="#"><span><i class="fab fa-facebook-f"></i></span></a></li>
-              <li class="ftco-animate"><a href="#"><span><i class="fab fa-instagram"></i></span></a></li>
-              <li class="ftco-animate"><a href="#"><span><i class="fab fa-pinterest-p"></i></span></a></li>
-            </ul>
-          </div>
+          <ul class="ftco-footer-social p-0">
+            <li class="ftco-animate"><a href="#"><span><i class="fab fa-twitter"></i></span></a></li>
+            <li class="ftco-animate"><a href="#"><span><i class="fab fa-facebook-f"></i></span></a></li>
+            <li class="ftco-animate"><a href="#"><span><i class="fab fa-instagram"></i></span></a></li>
+            <li class="ftco-animate"><a href="#"><span><i class="fab fa-pinterest-p"></i></span></a></li>
+          </ul>
         </div>
       </div>
-    </footer>
-  </section>
+    </div>
+  </footer>
   <!-- akhir footer -->
 
 

@@ -10,7 +10,7 @@
             <div class="col-sm-12">
                 <div class="block margin-bottom-sm">
                     <div class="title">
-                        <button data-toggle="modal" data-target="#myProduk" class="btn btn-outline-warning"><i class="fad fa-file-plus"></i> Tambah Produk</button>
+                        <button data-toggle="modal" data-target="#myProduk" class="btn btn-outline-primary"><i class="fad fa-file-plus"></i> Tambah Produk</button>
                         <div id="myProduk" class="modal fade">
                             <div class="modal-dialog">
                                 <!-- Modal content -->
@@ -79,9 +79,10 @@
                                             </div>
                                         </td>
                                         <td class="text-center" width="400px">
-                                            <a href=".?page=produk_variasi&id=<?php echo $d['id_produk'] ?>" class="btn btn-outline-success btn-sm">Variasi</a> -
-                                            <button data-toggle="modal" data-target="#myEdit<?php echo $d['id_produk'] ?>" class="btn btn-outline-info btn-sm">Edit</button> -
-                                            <button data-toggle="modal" data-target="#myHapus<?php echo $d['id_produk'] ?>" class="btn btn-outline-primary btn-sm">Hapus</button></td>
+                                            <a href=".?page=produk_variasi&id=<?php echo $d['id_produk'] ?>" class="btn btn-outline-success ">Variasi</a> -
+                                            <button data-toggle="modal" data-target="#myEdit<?php echo $d['id_produk'] ?>" class="btn btn-outline-info ">Edit</button> -
+                                            <button data-toggle="modal" data-target="#myHapus<?php echo $d['id_produk'] ?>" class="btn btn-outline-primary ">Hapus</button>
+                                        </td>
                                     </tr>
 
                                     <!-- modal untuk hapus -->
@@ -129,7 +130,8 @@
                                                             </div>
                                                             <div class="form-group">
                                                                 <label>Gambar</label>
-                                                                <input type="file" id="ygambar" class="form-control" name="ygambar"><br> </div>
+                                                                <input type="file" id="ygambar" class="form-control" name="ygambar"><br>
+                                                            </div>
                                                             <div class="form-group">
                                                                 <label>Informasi Singkat</label>
                                                                 <textarea class="form-control" name="ysingkat" cols="30" rows="2"><?= $dat['deskripsi_singkat']; ?></textarea>

@@ -14,7 +14,7 @@
 
                     ?>
                     <div class="title">
-                        <a href=".?page=produk_variasi_tambah&id=<?php echo $id_produk ?>" class="btn btn-outline-warning">Tambah Variasi</a>
+                        <a href=".?page=produk_variasi_tambah&id=<?php echo $id_produk ?>" class="btn btn-outline-primary">Tambah Variasi</a>
                     </div>
                     <div class="table-responsive">
                         <table id="datatables" class="table table-striped">
@@ -48,7 +48,8 @@
                                         </td> -->
                                         <td class="text-center">
                                             <button data-toggle="modal" data-target="#myEdit<?php echo $d['id_variasi'] ?>" class="btn btn-outline-info btn-sm">Edit</button> -
-                                            <button data-toggle="modal" data-target="#myHapus<?php echo $d['id_variasi'] ?>" class="btn btn-outline-primary btn-sm">Hapus</button></td>
+                                            <button data-toggle="modal" data-target="#myHapus<?php echo $d['id_variasi'] ?>" class="btn btn-outline-primary btn-sm">Hapus</button>
+                                        </td>
                                     </tr>
 
                                     <!-- modal untuk hapus -->
