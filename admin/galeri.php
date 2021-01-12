@@ -10,7 +10,7 @@
             <div class="col-sm-12">
                 <div class="block margin-bottom-sm">
                     <div class="title">
-                        <button data-toggle="modal" data-target="#myGaleri" class="btn btn-outline-warning"><i class="fad fa-file-plus"></i> Tambah Gambar</button>
+                        <button data-toggle="modal" data-target="#myGaleri" class="btn btn-outline-primary"><i class="fad fa-file-plus"></i> Tambah Gambar</button>
                         <div id="myGaleri" class="modal fade">
                             <div class="modal-dialog">
                                 <!-- Modal content -->
@@ -80,7 +80,8 @@
                                             </div>
                                         </td>
                                         <td class="text-center"> <button data-toggle="modal" data-target="#myEdit<?php echo $d['id_galeri'] ?>" class="btn btn-outline-info btn-sm">Edit</button> -
-                                            <button data-toggle="modal" data-target="#myHapus<?php echo $d['id_galeri'] ?>" class="btn btn-outline-primary btn-sm">Hapus</button></td>
+                                            <button data-toggle="modal" data-target="#myHapus<?php echo $d['id_galeri'] ?>" class="btn btn-outline-primary btn-sm">Hapus</button>
+                                        </td>
                                     </tr>
                                     <!-- modal untuk hapus -->
                                     <div class="modal fade" id="myHapus<?php echo $d['id_galeri'] ?>">
@@ -123,11 +124,12 @@
                                                             </div>
                                                             <div class="form-group">
                                                                 <label>Tanggal Dokumentasi 2</label>
-                                                                <input type="text" name="date-input2" id="date-input2" value="<?php echo date('d-m-Y', strtotime($d['tanggal'])); ?>" data-dd-theme="my-style" class="form-control date-input2" required>
+                                                                <input type="text" name="date-input2" id="date-input2" value="<?php echo $d['tanggal']; ?>" data-dd-theme="my-style" class="form-control date-input2" required>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label>Gambar</label>
-                                                                <input type="file" id="zgambar" class="form-control" name="zgambar"><br> </div>
+                                                                <input type="file" id="zgambar" class="form-control" name="zgambar"><br>
+                                                            </div>
                                                             <div class="form-group">
                                                                 <label>Informasi Singkat</label>
                                                                 <textarea class="form-control" name="zsingkat" cols="30" rows="2"><?= $dat['deskripsi_singkat']; ?></textarea>
