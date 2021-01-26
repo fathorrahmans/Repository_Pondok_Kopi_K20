@@ -1,4 +1,11 @@
 <?php
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+include('phpmailer/src/Exception.php');
+include('phpmailer/src/PHPMailer.php');
+include('phpmailer/src/SMTP.php');
 session_start();
 include "koneksi/koneksi.php";
 if (!empty($_SESSION['id_pelanggan'])) {
@@ -28,357 +35,6 @@ if (!empty($_SESSION['id_pelanggan'])) {
 	<link rel="stylesheet" href="css/fontawesome5/css/all.min.css">
 	<link rel="stylesheet" href="css/style.css">
 
-	<style>
-		.buttonl {
-			background-color: transparent;
-			padding: 0;
-			border: 0;
-			outline: 0;
-			cursor: pointer;
-		}
-
-		input {
-			background-color: transparent;
-			padding: 0;
-			border: 0;
-			outline: 0;
-		}
-
-		input[type=submit] {
-			cursor: pointer;
-		}
-
-		input::-moz-placeholder {
-			font-size: 0.85rem;
-			font-family: "Montserrat", sans-serif;
-			font-weight: 300;
-			letter-spacing: 0.1rem;
-			color: #ccc;
-		}
-
-		input:-ms-input-placeholder {
-			font-size: 0.85rem;
-			font-family: "Montserrat", sans-serif;
-			font-weight: 300;
-			letter-spacing: 0.1rem;
-			color: #ccc;
-		}
-
-		input::placeholder {
-			font-size: 0.85rem;
-			font-family: "Montserrat", sans-serif;
-			font-weight: 300;
-			letter-spacing: 0.1rem;
-			color: rgba(0, 0, 0, 0.7);
-		}
-
-		/**
- * * Bounce to the left side
- * */
-		@-webkit-keyframes bounceLeft {
-			0% {
-				transform: translate3d(100%, -50%, 0);
-			}
-
-			50% {
-				transform: translate3d(-30px, -50%, 0);
-			}
-
-			100% {
-				transform: translate3d(0, -50%, 0);
-			}
-		}
-
-		@keyframes bounceLeft {
-			0% {
-				transform: translate3d(100%, -50%, 0);
-			}
-
-			50% {
-				transform: translate3d(-30px, -50%, 0);
-			}
-
-			100% {
-				transform: translate3d(0, -50%, 0);
-			}
-		}
-
-		/**
- * * Bounce to the left side
- * */
-		@-webkit-keyframes bounceRight {
-			0% {
-				transform: translate3d(0, -50%, 0);
-			}
-
-			50% {
-				transform: translate3d(calc(100% + 30px), -50%, 0);
-			}
-
-			100% {
-				transform: translate3d(100%, -50%, 0);
-			}
-		}
-
-		@keyframes bounceRight {
-			0% {
-				transform: translate3d(0, -50%, 0);
-			}
-
-			50% {
-				transform: translate3d(calc(100% + 30px), -50%, 0);
-			}
-
-			100% {
-				transform: translate3d(100%, -50%, 0);
-			}
-		}
-
-		/**
- * * Show Sign Up form
- * */
-		@-webkit-keyframes showSignUp {
-			100% {
-				opacity: 1;
-				visibility: visible;
-				transform: translate3d(0, 0, 0);
-			}
-		}
-
-		@keyframes showSignUp {
-			100% {
-				opacity: 1;
-				visibility: visible;
-				transform: translate3d(0, 0, 0);
-			}
-		}
-
-		/**
- * * Page background
- * */
-		.user {
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			width: 100%;
-			height: 100vh;
-			background-size: cover;
-		}
-
-		.user_options-container {
-			position: relative;
-			width: 80%;
-		}
-
-		.user_options-text {
-			display: flex;
-			justify-content: space-between;
-			width: 100%;
-			background-color: #FFFFE5;
-			border-radius: 3px;
-		}
-
-		/**
- * * Registered and Unregistered user box and text
- * */
-		.user_options-registered,
-		.user_options-unregistered {
-			width: 50%;
-			padding: 75px 45px;
-			color: #000;
-			font-weight: 300;
-		}
-
-		.user_registered-title,
-		.user_unregistered-title {
-			margin-bottom: 15px;
-			font-size: 1.66rem;
-			line-height: 1em;
-		}
-
-		.user_unregistered-text,
-		.user_registered-text {
-			font-size: 0.83rem;
-			line-height: 1.4em;
-		}
-
-		.user_registered-login,
-		.user_unregistered-signup {
-			margin-top: 30px;
-			border: 1px solid #000;
-			padding: 10px 30px;
-			color: #000;
-			text-transform: uppercase;
-			line-height: 1em;
-			letter-spacing: 0.2rem;
-			transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-		}
-
-		.user_registered-login:hover,
-		.user_unregistered-signup:hover {
-			color: #fff;
-			background-color: #000;
-		}
-
-		/**
- * * Login and signup forms
- * */
-		.user_options-forms {
-			position: absolute;
-			top: 50%;
-			left: 30px;
-			width: calc(50% - 30px);
-			min-height: 420px;
-			background-color: #FFFFF8;
-			border-radius: 3px;
-			box-shadow: 2px 0 15px rgba(0, 0, 0, 0.25);
-			overflow: hidden;
-			transform: translate3d(100%, -50%, 0);
-			transition: transform 0.4s ease-in-out;
-		}
-
-		.user_options-forms .user_forms-login {
-			transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
-		}
-
-		.user_options-forms .forms_title {
-			margin-bottom: 45px;
-			font-size: 1.5rem;
-			font-weight: 500;
-			line-height: 1em;
-			text-transform: uppercase;
-			color: red;
-			letter-spacing: 0.1rem;
-		}
-
-		.user_options-forms .forms_field:not(:last-of-type) {
-			margin-bottom: 20px;
-		}
-
-		.user_options-forms .forms_field-input {
-			width: 100%;
-			border-bottom: 1px solid #ccc;
-			padding: 6px 20px 6px 6px;
-			font-family: "Montserrat", sans-serif;
-			font-size: 1rem;
-			font-weight: 300;
-			color: black;
-			letter-spacing: 0.1rem;
-			transition: border-color 0.2s ease-in-out;
-		}
-
-		.user_options-forms .forms_field-input:focus {
-			border-color: gray;
-		}
-
-		.user_options-forms .forms_buttons {
-			display: flex;
-			justify-content: flex-end;
-			align-items: center;
-			margin-top: 35px;
-
-		}
-
-		.user_options-forms .forms_buttons-action {
-			background-color: #e8716d;
-			padding: 10px 35px;
-			font-size: 1rem;
-			font-family: "Montserrat", sans-serif;
-			font-weight: 300;
-			color: #fff;
-			text-transform: uppercase;
-			letter-spacing: 0.1rem;
-			transition: background-color 0.2s ease-in-out;
-			border: 0px;
-		}
-
-		.user_options-forms .forms_buttons-action:hover {
-			background-color: #e14641;
-		}
-
-		.user_options-forms .user_forms-signup,
-		.user_options-forms .user_forms-login {
-			position: absolute;
-			top: 20px;
-			left: 40px;
-			width: calc(100% - 80px);
-			opacity: 0;
-			visibility: hidden;
-			transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out, transform 0.5s ease-in-out;
-		}
-
-		.user_options-forms .user_forms-signup {
-			transform: translate3d(120px, 0, 0);
-		}
-
-		.user_options-forms .user_forms-signup .forms_buttons {
-			justify-content: flex-end;
-		}
-
-		.user_options-forms .user_forms-login {
-			transform: translate3d(0, 0, 0);
-			opacity: 1;
-			visibility: visible;
-		}
-
-		/**
- * * Triggers
- * */
-		.user_options-forms.bounceLeft {
-			-webkit-animation: bounceLeft 1s forwards;
-			animation: bounceLeft 1s forwards;
-		}
-
-		.user_options-forms.bounceLeft .user_forms-signup {
-			-webkit-animation: showSignUp 1s forwards;
-			animation: showSignUp 1s forwards;
-		}
-
-		.user_options-forms.bounceLeft .user_forms-login {
-			opacity: 0;
-			visibility: hidden;
-			transform: translate3d(-120px, 0, 0);
-		}
-
-		.user_options-forms.bounceRight {
-			-webkit-animation: bounceRight 1s forwards;
-			animation: bounceRight 1s forwards;
-		}
-
-		/**
- * * Responsive 990px
- * */
-		@media screen and (max-width: 990px) {
-			.user_options-container {
-				width: 100%;
-			}
-
-			.user_options-forms {
-				min-height: 450px;
-				min-width: 200px;
-			}
-
-			.user_options-forms .forms_buttons {
-				flex-direction: column;
-			}
-
-			.user_options-forms .user_forms-login .forms_buttons-action {
-				margin-top: 30px;
-			}
-
-			.user_options-forms .user_forms-signup,
-			.user_options-forms .user_forms-login {
-				top: 20px;
-				width: 100%;
-			}
-
-			.user_options-registered,
-			.user_options-unregistered {
-				padding: 50px 45px;
-			}
-		}
-	</style>
-
 </head>
 
 <body>
@@ -386,6 +42,7 @@ if (!empty($_SESSION['id_pelanggan'])) {
 	<?php
 	include "navbar.php";
 	?>
+
 
 	<section class="user">
 		<div class="user_options-container">
@@ -409,13 +66,14 @@ if (!empty($_SESSION['id_pelanggan'])) {
 					<form class="forms_form" action="" method="POST">
 						<fieldset class="forms_fieldset">
 							<div class="forms_field">
-								<input type="text" name="xuser" placeholder="Username" class="forms_field-input" required autofocus />
+								<input type="text" name="xuser" placeholder="E-mail/Username" class="forms_field-input" required autofocus />
 							</div>
 							<div class="forms_field">
 								<input type="password" name="xpass" placeholder="Password" class="forms_field-input" required />
 							</div>
 						</fieldset>
 						<div class="forms_buttons">
+							<a href="login_lupassword.php">Lupa password?</a> &nbsp; &nbsp;
 							<button type="submit" name="login" class="forms_buttons-action">Log In</button>
 						</div>
 					</form>
@@ -424,20 +82,28 @@ if (!empty($_SESSION['id_pelanggan'])) {
 						$u = $_POST['xuser'];
 						$p = $_POST['xpass'];
 
-						$sql = mysqli_query($con, "select * from tb_pelanggan where username='$u'") or die("error");
-						//cek username
+						$sql = mysqli_query($con, "SELECT * FROM tb_pelanggan WHERE username='$u' OR email='$u'") or die("error");
+						//cek username dan email
 						if (mysqli_num_rows($sql) == 1) {
-							//cek password
 							$r2 = mysqli_fetch_assoc($sql);
-							if (password_verify($p, $r2['password'])) {
-								$_SESSION["id_pelanggan"] = $r2['id_pelanggan']; //$user;
-								echo "<script>location='.'</script>";
-								exit;
+							if ($r2['verifikasi'] == 2) {
+								echo '<div class="alert alert-danger mt-2"><b>Akun</b> anda terblokir!</div>';
+								return false;
+							}
+							if ($r2['verifikasi'] == 1) {
+								//cek password
+								if (password_verify($p, $r2['password'])) {
+									$_SESSION["id_pelanggan"] = $r2['id_pelanggan']; //$user;
+									echo "<script>location='.'</script>";
+									exit;
+								} else {
+									echo "<script>alert('Password yang dimasukkan salah!');location='login.php'</script>";
+								}
 							} else {
-								echo "<script>alert('Password yang dimasukkan salah!');location='login.php'</script>";
+								echo "<script>alert('Silahkan verifikasi email anda! Cek di kotak masuk atau spam');location='login.php'</script>";
 							}
 						} else {
-							echo "<script>alert('Username yang dimasukkan salah!');location='login.php'</script>";
+							echo "<script>alert('E-mail/Username yang dimasukkan salah!');location='login.php'</script>";
 						}
 					}
 					?>
@@ -450,7 +116,7 @@ if (!empty($_SESSION['id_pelanggan'])) {
 								<input type="text" name="xnama" placeholder="Nama Lengkap" class="forms_field-input" required />
 							</div>
 							<div class="forms_field">
-								<input type="text" name="xusername" placeholder="Username" class="forms_field-input" required />
+								<input type="email" name="xemail" placeholder="E-mail" class="forms_field-input" required />
 							</div>
 							<div class="forms_field">
 								<input type="password" name="xpassword" placeholder="Password" class="forms_field-input" required />
@@ -462,21 +128,25 @@ if (!empty($_SESSION['id_pelanggan'])) {
 						<div class="forms_buttons">
 							<button type="submit" name="daftar" class="forms_buttons-action">Daftar</button>
 						</div>
+
 					</form>
 					<?php
 					function registrasi($data)
 					{
+						include "koneksi/koneksi.php";
+
 						global $con;
 
-						$nama = $data['xnama'];
-						$username = strtolower(stripcslashes($data['xusername']));
+						$nama = $data['xnama']; //nama penerima
+						$email = $data['xemail']; //email penerima
 						$password = mysqli_real_escape_string($con, $data['xpassword']);
 						$password2 = mysqli_real_escape_string($con, $data['xpassword2']);
 
-						//cek username ada apa tidak
-						$duser = mysqli_query($con, "SELECT username FROM tb_pelanggan WHERE username='$username'");
-						if (mysqli_fetch_assoc($duser)) {
-							echo "<script>alert('Username sudah terdaftar!')</script>";
+
+						//cek username dan email ada apa tidak
+						$dusr = mysqli_query($con, "SELECT * FROM tb_pelanggan WHERE email='$email'");
+						if (mysqli_fetch_assoc($dusr)) {
+							echo "<script>alert('Email sudah terdaftar!')</script>";
 							return false;
 						}
 
@@ -489,19 +159,45 @@ if (!empty($_SESSION['id_pelanggan'])) {
 						//enkripsi password
 						$password = password_hash($password, PASSWORD_DEFAULT);
 
+						//enkripsi verifikasi key
+						$vkey = md5(time() . $nama);
+
 						//input user ke database
-						mysqli_query($con, "INSERT INTO tb_pelanggan(nama,username,password) values ('$nama','$username','$password')");
+						mysqli_query($con, "INSERT INTO tb_pelanggan(nama,email,vkey,password) values ('$nama','$email','$vkey','$password')");
+
+						$email_pengirim = 'ftrrahman173@gmail.com'; // Isikan dengan email pengirim
+						$nama_pengirim = 'Admin Pondok Kopi'; // Isikan dengan nama pengirim
+						$email_penerima = $email; // Ambil email penerima dari inputan form
+						$subjek = 'Verifikasi akun pendaftar'; // Ambil subjek dari inputan form
+						$mail = new PHPMailer;
+						$mail->isSMTP();
+						$mail->Host = 'smtp.gmail.com';
+						$mail->Username = $email_pengirim; // Email Pengirim
+						$mail->Password = 'rmn122334'; // Isikan dengan Password email pengirim
+						$mail->Port = 465;
+						$mail->SMTPAuth = true;
+						$mail->SMTPSecure = 'ssl';
+						// $mail->SMTPDebug = 2; // Aktifkan untuk melakukan debugging
+						$mail->setFrom($email_pengirim, $nama_pengirim);
+						$mail->addAddress($email_penerima, '');
+						$mail->isHTML(true); // Aktifkan jika isi emailnya berupa html
+						// Load file content.php
+						$mail->Subject = $subjek;
+						$mail->Body = "Selemat, anda berhasil membuat akun. Untuk mengaktifkan akun anda silahkan klik link berikut ini.
+						<a href='http://localhost/kopi-v3/login_verifikasi.php?s=input&vkey=$vkey'>Verifikasi Akun saya</a>  ";
+						$mail->send();
 						return  mysqli_affected_rows($con);
 					}
 					if (isset($_POST['daftar'])) {
-
 						if (registrasi($_POST) > 0) {
-							echo "<script>alert('Akun anda telah ditambahkan!')</script>";
+
+							echo "<script>alert('Akun anda terdaftar, silahkan konfirmasi di email')</script>";
 						} else {
 							mysqli_errno($con);
 						}
 					}
 					?>
+
 				</div>
 			</div>
 		</div>
